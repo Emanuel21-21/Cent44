@@ -34,7 +34,7 @@ Template.alumnoForm.events({
 
     var ingresoNombreApellido = null;
     var ingresoDni = null; 
-    var ingresoLegajo = null; 
+    //var ingresoLegajo = null; 
     var ingresoNombreDni = null;
     var ingresoTelefono = null; 
     var ingresoDireccion = null; 
@@ -43,12 +43,12 @@ Template.alumnoForm.events({
     var ingresoEmail = null;    
     var ingresoFechaNacimiento = new Date(); 
     var ingresoFechaIngreso = new Date(); 
-    var ingresoDescripcion = null;
+    var ingresoObservacion = null;
     ingresoCarrera = Template.instance().selCarrera.get();      
 
     if (target.nombreApellido.value){ingresoNombreApellido = target.nombreApellido.value};
     if (target.dni.value){ingresoDni = target.dni.value};       
-    if (target.legajo.value){ingresoLegajo = target.legajo.value};       
+    //if (target.legajo.value){ingresoLegajo = target.legajo.value};       
     if (target.telefono.value){ingresoTelefono = target.telefono.value};
     if (target.direccion.value){ingresoDireccion = target.direccion.value};   
     if (target.localidad.value){ingresoLocalidad = target.localidad.value};   
@@ -66,7 +66,7 @@ Template.alumnoForm.events({
       ingresoFechaIngreso = new Date(ingresoFechaIngreso);//.toDateString("dd-MM-yyyy");
     };
 
-    if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};     
+    if (target.observacion.value){ingresoObservacion = target.observacion.value};     
 
     var espacio = " "; 
     var combinacion = ingresoNombreApellido.concat(espacio);
@@ -98,7 +98,7 @@ Template.alumnoForm.events({
           idUser:result,
           nombreApellido:ingresoNombreApellido, 
           dni:ingresoDni,
-          legajo:ingresoLegajo,
+         // legajo:ingresoLegajo,
           miscarreras:carr,
           nombreDni:combinacion,          
           telefono:ingresoTelefono,
@@ -108,7 +108,7 @@ Template.alumnoForm.events({
           email:ingresoEmail,
           fechaNacimiento:ingresoFechaNacimiento,
           fechaIngreso:ingresoFechaIngreso,
-          descripcion:ingresoDescripcion,
+          observacion:ingresoObservacion,
           rol:"alumno",
         });
 

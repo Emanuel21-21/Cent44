@@ -28,8 +28,8 @@
 					      	<td>{{carreraInfo.nombre}}</td>
 					      </tr>		    	
 					      <tr>
-					      	<td><strong><p>Código</p></strong></td>
-					      	<td>{{carreraInfo.codigo}}</td>
+					      	<td><strong><p>Duración</p></strong></td>
+					      	<td>{{carreraInfo.duracion}}</td>
 					      </tr>		      						      
 					    </tbody>	
 					</table>
@@ -67,8 +67,8 @@
 					  <input type="text" class="form-control" id="nombre" value={{carreraEditar.nombre}}>
 					</div>
 					<div class="form-group">
-					  <label for="usr">Código</label>
-					  <input type="text" class="form-control" id="codigo" value={{carreraEditar.codigo}}>
+					  <label for="usr">Duración</label>
+					  <input type="text" class="form-control" id="duracion" value={{carreraEditar.duracion}}>
 					</div>					
 					<div class="form-group">
 					  <label for="usr">Descripcion de la carrera</label>
@@ -105,7 +105,7 @@
 					<thead>
 				      <tr>
 			          	<th class="#80cbc4 teal-text">NOMBRE</th>
-			          	<th class="#80cbc4 teal-text">CODIGO</th>			          	
+			          	<th class="#80cbc4 teal-text">DURACION</th>			          	
 	                    <th class="#80cbc4 teal-text"></th>
 				      </tr>
 				    </thead>
@@ -113,7 +113,7 @@
 				    	{{#EasySearch.Each index=carreras}}	
 				      <tr>
 				        <td>{{nombre}}</td>
-				        <td>{{codigo}}</td>				        
+				        <td>{{duracion}}</td>				        
 				        <td>
 				        	<span class="right">									
 							<a href="#"	class="modalCarreraInfo btn btn-info btn-xs">Detalle</a>
