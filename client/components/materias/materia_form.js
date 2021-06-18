@@ -53,14 +53,18 @@ Template.materiaForm.events({
 		const target = event.target;	
 		var ingresoNombre = null;
 		var ingresoCarrera = null; 
-		var ingresoDocente = null;	
+		var ingresoDocente = null;
+		var ingresoAnio = null;	
 		var ingresoDescripcion = null;	
+		var ingresoDuracion = false;	
 
 
 		if (target.nombre.value){ingresoNombre = target.nombre.value};		
 		ingresoCarrera = Template.instance().selCarrera2.get();      
 		ingresoDocente = Template.instance().selDocente2.get(); 	
 		
+		if (target.anio.value){ingresoAnio = target.anio.value};
+		if (target.duracion.value){ingresoDuracion = true};
 		if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};					
 
 		var idCarrera;	
@@ -92,8 +96,11 @@ Template.materiaForm.events({
 			nombreCarrera:nombreCarrera,			
 			idDocente:idDocente,		
 			nombreDocente:nombreDocente,
-			dniDocente:dniDocente,	
-			descripcion:ingresoDescripcion,			
+			dniDocente:dniDocente,
+			anio:ingresoAnio,
+			duracion:ingresoDuracion,	
+			descripcion:ingresoDescripcion,
+
 		});
 		
 			

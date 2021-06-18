@@ -68,7 +68,7 @@
 					</div>
 					<div class="form-group">
 					  <label for="usr">Duración</label>
-					  <input type="text" class="form-control" id="duracion" value={{carreraEditar.duracion}}>
+					  <input type="number" class="form-control" id="duracion" value={{carreraEditar.duracion}}>
 					</div>					
 					<div class="form-group">
 					  <label for="usr">Descripcion de la carrera</label>
@@ -113,7 +113,7 @@
 				    	{{#EasySearch.Each index=carreras}}	
 				      <tr>
 				        <td>{{nombre}}</td>
-				        <td>{{duracion}}</td>				        
+				        <td>{{duracion}} años</td>				        
 				        <td>
 				        	<span class="right">									
 							<a href="#"	class="modalCarreraInfo btn btn-info btn-xs">Detalle</a>

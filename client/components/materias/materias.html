@@ -31,6 +31,15 @@
 					      	<td>{{materiaInfo.nombreCarrera}}</td>
 					      </tr>
 					      <tr>
+					      	<td><strong><p>Duracion</p></strong></td>
+					      	{{#if materiaInfo.duracion}} 
+							<td> ANUAL </td>
+						{{else}}
+							<td> CUATRIMESTRAL </td>
+						{{/if}}
+					      	
+					      </tr>
+					      <tr>
 					      	<td><strong><p>Docente</p></strong></td>
 					      	<td>{{materiaInfo.nombreDocente}}</td>
 					      </tr>	      						      					      						      
@@ -86,7 +95,20 @@
 				       	data-source="docentes1"
 				       	data-select="selecDocente"
 				       	value={{materiaEditar.nombreDocente}}>
-					</div>					
+					</div>
+					<div class="form-group">
+						  <label for="duracion">¿La Duración es anual?</label>
+						  <input type="checkbox" class="form-control" id="duracion"
+
+						  checked={{materiaEditar.duracion}}
+
+						  >
+
+
+
+
+
+						</div>						
 					<div class="form-group">
 					  <label for="usr">Descripcion de la materia</label>
 					  <textarea class="form-control" rows="5" id="descripcion" value={{materiaEditar.descripcion}}></textarea>
@@ -124,15 +146,23 @@
 				      <tr>
 			          	<th class="#80cbc4 teal-text">NOMBRE</th>
 			          	<th class="#80cbc4 teal-text">CARRERA</th>
+			          	<th class="#80cbc4 teal-text">DURACION</th>
 			          	<th class="#80cbc4 teal-text">DOCENTE</th>			          	
-			          	<th class="#80cbc4 teal-text">DNI</th>			          	
+			          	<th class="#80cbc4 teal-text">DNI</th>
+
 				      </tr>
 				    </thead>
 				    <tbody>
 				    	{{#EasySearch.Each index=materias}}	
+				     
 				      <tr>
 				        <td>{{nombre}}</td>
 				        <td>{{nombreCarrera}}</td>
+				        {{#if duracion}} 
+							<td> ANUAL </td>
+						{{else}}
+							<td> CUATRIMESTRAL </td>
+						{{/if}}
 				        <td>{{nombreDocente}}</td>				        
 				        <td>{{dniDocente}}</td>				        
 				        <td>
