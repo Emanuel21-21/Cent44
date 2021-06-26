@@ -51,7 +51,6 @@ Template.llamadoForm.events({
       	Llamados.insert({
     			nombre:ingresoNombre, 			
     			numero:ingresoNumero,
-    			llamadoNumero: combinacion,
     			fechaDesde: fechaDesde,
     			fechaHasta: fechaHasta,			
     			descripcion:ingresoDescripcion,			

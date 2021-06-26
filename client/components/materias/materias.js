@@ -69,6 +69,11 @@ Template.materias.events({
       // Get value from form element
       const target = event.target;  
 
+      var ingresoDuracion = false;
+      var ingresoAnio = null; 
+      console.log(target.duracion.checked);
+      if (target.duracion.checked == true){ingresoDuracion = true;console.log('entro aca')};
+      if (target.anio.value){ingresoAnio = target.anio.value};
       if (target.nombre.value){var ingresoNombre = target.nombre.value};      
       ingresoCarrera = Template.instance().selCarrera2.get();      
       ingresoDocente = Template.instance().selDocente2.get();            
@@ -99,6 +104,7 @@ Template.materias.events({
       var combinacion = ingresoNombre.concat(espacio);
       combinacion = combinacion.concat(nombreCarrera);
 
+
       Materias.update({_id:materia._id},{$set: {
         nombre:ingresoNombre,         
         idCarrera:idCarrera,
@@ -107,7 +113,9 @@ Template.materias.events({
         idDocente:idDocente,
         nombreDocente:nombreDocente,
         dniDocente:dniDocente,
-        descripcion:ingresoDescripcion,        
+        descripcion:ingresoDescripcion,
+        duracion:ingresoDuracion,
+        anio:ingresoAnio,        
       }});
 
       $('#modalMateriaEditar').modal('hide'); //CIERRO LA VENTANA MODAL      

@@ -39,6 +39,12 @@
 						{{/if}}
 					      	
 					      </tr>
+
+					      <tr>
+					      	<td><strong><p>Año</p></strong></td>
+					      	<td>{{materiaInfo.anio}}</td>
+					      </tr>
+
 					      <tr>
 					      	<td><strong><p>Docente</p></strong></td>
 					      	<td>{{materiaInfo.nombreDocente}}</td>
@@ -108,7 +114,12 @@
 
 
 
-						</div>						
+						</div>	
+					<div class="form-group">
+					  <label for="usr">Año</label>
+					  <input type="text" class="form-control" id="anio" value={{materiaEditar.anio}}>
+					</div>
+
 					<div class="form-group">
 					  <label for="usr">Descripcion de la materia</label>
 					  <textarea class="form-control" rows="5" id="descripcion" value={{materiaEditar.descripcion}}></textarea>
@@ -147,6 +158,7 @@
 			          	<th class="#80cbc4 teal-text">NOMBRE</th>
 			          	<th class="#80cbc4 teal-text">CARRERA</th>
 			          	<th class="#80cbc4 teal-text">DURACION</th>
+			          	<th class="#80cbc4 teal-text">AÑO</th>
 			          	<th class="#80cbc4 teal-text">DOCENTE</th>			          	
 			          	<th class="#80cbc4 teal-text">DNI</th>
 
@@ -163,6 +175,7 @@
 						{{else}}
 							<td> CUATRIMESTRAL </td>
 						{{/if}}
+						<td>{{anio}}º</td>
 				        <td>{{nombreDocente}}</td>				        
 				        <td>{{dniDocente}}</td>				        
 				        <td>
