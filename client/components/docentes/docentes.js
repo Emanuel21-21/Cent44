@@ -27,6 +27,10 @@ Template.docentes.helpers({
       return Template.instance().selDocenteEditar.get();        
     },
 
+    docenteEliminar: function() {     
+      return Template.instance().selDocenteEliminar.get();        
+    },
+
     docenteChangePass: function() {     
       return Template.instance().selDocenteChangePass.get();        
     },
@@ -50,6 +54,12 @@ Template.docentes.events({
       var docente = Docentes.findOne({"_id":this._id});      
       Template.instance().selDocenteEditar.set(docente);
       $('#modalDocenteEditar').modal('show');
+    }, 
+
+    'click .modalDocenteEliminar': function(event, template){   
+      var docente = Docentes.findOne({"_id":this._id});      
+      Template.instance().selDocenteEliminar.set(docente);
+      $('#modalDocenteEliminar').modal('show');
     }, 
 
     'click .modalDocenteChangePass': function(event, template){   

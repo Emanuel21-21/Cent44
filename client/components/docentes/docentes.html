@@ -188,6 +188,79 @@
     </div>
 </div>
 
+<!-- ******************MODAL ELIMINAR DOCENTE********************************-->
+<div class="modal" id="modalDocenteEliminar" role="dialog">
+    <div class="modal-dialog modal-md">                       
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <form class="form" id="formEliminarDocente">      
+          <div class="modal-body">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>          
+                    <h3>Eliminar docente</h3>
+              </div>              
+              <div class="panel-body">            
+                    <div class="form-group">
+                    <label for="usr">Nombre y Apellido</label>
+                    <input type="text" class="form-control" id="nombreApellido" value={{docenteEliminar.nombreApellido}}>
+              </div>
+              <div class="form-group">          
+                    <label for="usr">DNI</label>
+                    <input type="text" class="form-control" id="dni" value={{docenteEliminar.dni}}>
+              </div>
+              <div class="form-group">          
+                    <label for="usr">Legajo</label>
+                    <input type="text" class="form-control" id="legajo" value={{docenteEliminar.legajo}}>
+              </div>          
+              <div class="form-group">
+                    <label for="usr">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono" value={{docenteEliminar.telefono}}>
+              </div>
+              <div class="form-group">
+                    <label for="usr">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" value={{docenteEliminar.direccion}}>
+              </div>
+              <div class="form-group">
+                    <label for="usr">Localidad</label>
+                    <input type="text" class="form-control" id="localidad" value={{docenteEliminar.localidad}}>
+              </div>
+              <div class="form-group">
+                    <label for="usr">Provincia</label>
+                    <input type="text" class="form-control" id="provincia" value={{docenteEliminar.provincia}}>
+              </div>
+              <div class="form-group">
+                    <label for="usr">Email</label>
+                    <input type="text" class="form-control" id="email" value={{docenteEliminar.email}}>
+              </div>
+              <div class="form-group">
+                    <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                    <input type="text" class="fechaNacimiento form-control" id="fechaNacimiento2" placeholder="dd-mm-aaaa" value={{formatDate2 docenteEliminar.fechaNacimiento}}>
+              </div>
+              <div class="form-group">
+                    <label for="fechaIngreso">Fecha de Ingreso</label>
+                    <input type="text" class="fechaIngreso form-control" id="fechaIngreso2"  placeholder="dd-mm-aaaa" value={{formatDate2 docenteEliminar.fechaIngreso}}>
+              </div>                                
+              <div class="form-group">
+                    <label for="usr">Descripcion del docente</label>
+                    <textarea class="form-control" rows="5" id="descripcion" value={{docenteEliminar.descripcion}}></textarea>
+              </div>
+              </div>
+          </div>
+        </div> 
+
+        <div class="modal-footer">
+      <button type="submit" id="submit" class="btn btn-success">Eliminar</button>                      
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>   
+    </form>        
+          
+      </div>
+      
+    </div>
+</div>
+
 <!--********************************************************************************************************************-->
   
          <div class="panel panel-success">
@@ -219,7 +292,8 @@
                             <td>
                                 <span class="right">		                                
                                 <a href="#"	class="modalDocenteInfo btn btn-info btn-xs">Detalle</a>
-                                <a href="#" class="modalDocenteEditar btn btn-warning btn-xs">Editar</a>                                
+                                <a href="#" class="modalDocenteEditar btn btn-warning btn-xs">Editar</a> 
+                                <a href="#" class="modalDocenteEliminar btn btn-warning btn-xs">Eliminar</a>                               
                                 <a href="#" class="modalDocenteChangePass btn btn-danger btn-xs">Cambiar Pass</a>                
                                 </span>
                             </td>
