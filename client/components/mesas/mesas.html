@@ -137,19 +137,19 @@
 				<table class="table table-hover">
 					<thead>
 				      <tr>
-			          	<th class="#80cbc4 teal-text">NOMBRE</th>
+			          	<th class="#80cbc4 teal-text">MATERIA</th>
+						  <th class="#80cbc4 teal-text">CARRERA</th>
 			          	<th class="#80cbc4 teal-text">LLAMADO</th>
-			          	<th class="#80cbc4 teal-text">NUMERO</th>			          	
-			          	<th class="#80cbc4 teal-text">MATERIA</th>			          	
+			          	<th class="#80cbc4 teal-text">NUMERO</th>			          				          	
 				      </tr>
 				    </thead>
 				    <tbody>
 				    	{{#EasySearch.Each index=mesas}}	
 				      <tr>
-				        <td>{{nombre}}</td>
-				        <td>{{nombreLlamado}}</td>
-				        <td>{{numeroLlamado}}</td>				        
-				        <td>{{nombreMateria}}</td>				        
+				        <td>{{nombreMateria}}</td>
+				        <td>{{nombreCarrera}}</td>
+						<td>{{nombreLlamado}}</td>				        
+				        <td>{{numeroLlamado}}</td>				        				        
 				        <td>
 				        	<span class="right">				        	
 							<a href="#"	class="modalMesaInfo btn btn-info btn-xs">Detalle</a>
