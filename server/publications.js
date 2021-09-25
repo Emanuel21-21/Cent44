@@ -33,5 +33,16 @@ Meteor.publish('llamados', function projectsPublication()
 
 Meteor.publish('mesas', function projectsPublication()
 {
-	return Mesas.find({owner: this.userId});
+	var mostrar = Roles.userIsInRole(this.userId,['admin']);
+    if (mostrar){
+      return Mesas.find();  
+    }
+    else{//alumno
+      	usuarioLogueado = Alumnos.findOne({idUser:this.userId});		
+		// AHORA TENGO QUE RECUPERAR LA CARRERA DEL ALUMNO
+		//var alumno = Alumnos.find({_id:usuarioLogueado});	
+		// AHORA TENGO QUE TRAER TODAS LAS MESAS CON LA CARRERA DEL ALUMNO			
+      	return Mesas.find({nombreCarrera: usuarioLogueado.carrera});
+    }
+    
 });

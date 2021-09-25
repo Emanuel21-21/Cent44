@@ -74,14 +74,7 @@ Template.alumnoForm.events({
 
     var carr = null;
     var carreraSeleccionada = Carreras.findOne({"_id":ingresoCarrera});//obtengo la Carrera seleccionada (objeto)     
-    if (carreraSeleccionada){
-      carr = {  _id: carreraSeleccionada._id,
-                nombreCarrera: carreraSeleccionada.nombre,
-
-      }
-      carr = [carr];      
-    } 
-
+    
     var usuario= new Object();            
       usuario.email=target.email.value;   
       usuario.dni=target.dni.value;   
@@ -99,7 +92,7 @@ Template.alumnoForm.events({
           nombreApellido:ingresoNombreApellido, 
           dni:ingresoDni,
          // legajo:ingresoLegajo,
-          miscarreras:carr,
+          carrera:carreraSeleccionada.nombre,
           nombreDni:combinacion,          
           telefono:ingresoTelefono,
           direccion:ingresoDireccion,

@@ -11,10 +11,11 @@
 						<li><a href="{{ pathFor 'mesas'}}">Mesas</a></li>										
 					{{/if}}				
 					{{#if isInRole 'docente'}}												
-						<li><a href=#>A definir</a></li>																
+						<li><a href=#></a></li>																
 					{{/if}}	
-					{{#if isInRole 'alumno'}}												
-						<li><a href=#>A definir</a></li>																
+					{{#if isInRole 'alumno'}}											
+						<li><a href="{{ pathFor 'mesas_alumno'}}">Mesas</a></li>
+						<li><a href=#>Materias a rendir</a></li>						
 					{{/if}}	
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
