@@ -48,9 +48,16 @@ Template.llamadoForm.events({
         };        
         if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};
 
+        //ESTE CODIGO CONCATENA EL NUMERO Y EL NOMBRE DEL LLAMADO
+        var espacio = " "; 
+        var combinacion = ingresoNombre.concat(espacio);
+        combinacion = combinacion.concat(ingresoNumero);
+        console.log(combinacion);
+
       	Llamados.insert({
     			nombre:ingresoNombre, 			
     			numero:ingresoNumero,
+          numeroNombre:combinacion,
     			fechaDesde: fechaDesde,
     			fechaHasta: fechaHasta,			
     			descripcion:ingresoDescripcion,			

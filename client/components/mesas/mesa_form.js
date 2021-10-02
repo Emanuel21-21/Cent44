@@ -32,7 +32,7 @@ Template.mesaForm.helpers({
 		Template.instance().selLlamado.set(suggestion.id);  		
 	},
 	llamados1: function() {     
-		return Llamados.find().fetch().map(function(object){ return {id: object._id, value: object.numero}; });    
+		return Llamados.find().fetch().map(function(object){ return {id: object._id, value: object.numeroNombre}; });    
 	},
 
 	selecMateria: function(event, suggestion, datasetName) {
@@ -91,7 +91,7 @@ Template.mesaForm.events({
 			idLlamado = llamadoSeleccionado._id;
 			nombreLlamado = llamadoSeleccionado.nombre;
 			numeroLlamado = llamadoSeleccionado.numero;			
-		} 
+		}  
 
 		var idCarrera;	
 		var nombreCarrera;	
@@ -137,6 +137,8 @@ Template.mesaForm.events({
 			nombreVocal2 = vocal2Seleccionada.nombreApellido;
 			dniVocal2 = vocal2Seleccionada.dni;
 		}
+
+		
 	  	
 		Mesas.insert({	
 			
@@ -144,7 +146,7 @@ Template.mesaForm.events({
 			idLlamado:idLlamado, 
 			nombreLlamado:nombreLlamado,
 			numeroLlamado:numeroLlamado,
-			
+					
 			idMateria:idMateria,	
 			nombreMateria:nombreMateria,
 			
