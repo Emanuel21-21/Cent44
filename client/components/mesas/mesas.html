@@ -1,5 +1,5 @@
 <template name="mesas">
-<!-- ********************** MODAL INFO DE LA MATERIA *********************-->
+<!-- ********************** MODAL INFO DE LA MESA *********************-->
 <div class="modal" id="modalMesaInfo" role="dialog">									  	
   	<div class="modal-dialog modal-md">										    
 
@@ -11,7 +11,7 @@
 			<div class="panel panel-info">
 			  	<div class="panel-heading">
 			  		<button type="button" class="close" data-dismiss="modal">&times;</button>          
-			  		<h3>Información de la materia</h3>
+			  		<h3>Información de la mesa</h3>
 			  	</div>					  	
 			  	<div class="panel-body">
 			  		<table class="table table-hover">
@@ -24,21 +24,29 @@
 					    <tbody>
 					      <tr>
 					      	<td><strong><p>Materia</p></strong></td>
-					      	<td>{{materiaInfo.nombre}}</td>
+					      	<td>{{mesaInfo.nombreMateria}}</td>
 					      </tr>		    						      
 					      <tr>
 					      	<td><strong><p>Carrera</p></strong></td>
-					      	<td>{{materiaInfo.nombreCarrera}}</td>
+					      	<td>{{mesaInfo.nombreCarrera}}</td>
 					      </tr>
 					      <tr>
-					      	<td><strong><p>Docente</p></strong></td>
-					      	<td>{{materiaInfo.nombreDocente}}</td>
-					      </tr>	      						      					      						      
+					      	<td><strong><p>Llamado</p></strong></td>
+					      	<td>{{mesaInfo.nombreLlamado}}</td>
+					      </tr>	 
+						  <tr>
+							<td><strong><p>Numero</p></strong></td>
+							<td>{{mesaInfo.numeroLlamado}}</td>
+						</tr>	
+						<tr>
+							<td><strong><p>Docente</p></strong></td>
+							<td>{{mesaInfo.nombrePresidente}}</td>
+						</tr>     						      					      						      
 					    </tbody>	
 					</table>
 			  		<div class="form-group">
-					  <label for="usr">Comentarios de la materia</label>
-					  <textarea disabled class="form-control" rows="5" id="descripcion" value={{materiaInfo.descripcion}}></textarea>
+					  <label for="usr">Comentarios de la mesa</label>
+					  <textarea disabled class="form-control" rows="5" id="descripcion" value={{mesaInfo.descripcion}}></textarea>
 					</div> 
 			  	
 			    

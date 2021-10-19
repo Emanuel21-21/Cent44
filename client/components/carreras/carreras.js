@@ -56,7 +56,7 @@ Template.carreras.events({
 
       	Carreras.update({_id:carrera._id},{$set: {
         	nombre : target.nombre.value,
-        	codigo: target.codigo.value,        	
+        	duracion: target.duracion.value,        	
         	descripcion: target.descripcion.value,        	
       	}});
       

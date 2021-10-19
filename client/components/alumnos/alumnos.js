@@ -90,7 +90,7 @@ Template.alumnos.events({
 
       if (target.nombreApellido.value){var ingresoNombre = target.nombreApellido.value};
       if (target.dni.value){var ingresoDni = target.dni.value};      
-      if (target.legajo.value){var ingresoLegajo = target.legajo.value};      
+      //if (target.legajo.value){var ingresoLegajo = target.legajo.value};      
       if (target.telefono.value){var ingresoTelefono = target.telefono.value};
       if (target.direccion.value){var ingresoDireccion = target.direccion.value};   
       if (target.localidad.value){var ingresoLocalidad = target.localidad.value};   
