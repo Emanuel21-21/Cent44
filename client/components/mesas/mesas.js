@@ -52,7 +52,8 @@ Template.mesas.events({
       // Get value from form element
       const target = event.target;  
 
-      if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};					
+      if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};		
+      ingresoLlamado = Template.instance().selCarrera.get();			
 
       var idLlamado;	
       var nombreLlamado;
