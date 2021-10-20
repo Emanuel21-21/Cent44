@@ -42,6 +42,7 @@ Template.mesas.events({
     'click .modalMesaEditar': function(event, template){   
       var mesa = Mesas.findOne({"_id":this._id});      
       Template.instance().selMesaEditar.set(mesa);
+      console.log(Template.instance().selMesaEditar.get());
       $('#modalMesaEditar').modal('show');
     }, 
 
