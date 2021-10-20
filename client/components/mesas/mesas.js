@@ -48,6 +48,31 @@ Template.mesas.helpers({
     llamados1: function() {     
       return Llamados.find().fetch().map(function(object){ return {id: object._id, value: object.numeroNombre}; });    
     },
+
+    llamados1: function() {     
+      return Llamados.find().fetch().map(function(object){ return {id: object._id, value: object.numeroNombre}; });    
+    },
+  
+    selecMateria: function(event, suggestion, datasetName) {
+      Template.instance().selMateria.set(suggestion.id);  		
+    },
+    materias1: function() {     
+      return Materias.find().fetch().map(function(object){ return {id: object._id, value: object.materiaCarrera}; });    
+    },
+    
+    selecPresidente: function(event, suggestion, datasetName) {
+      Template.instance().selPresidente.set(suggestion.id);  		
+    },
+    selecVocal1: function(event, suggestion, datasetName) {
+      Template.instance().selVocal1.set(suggestion.id);  		
+    },
+    selecVocal2: function(event, suggestion, datasetName) {
+      Template.instance().selVocal2.set(suggestion.id);  		
+    },
+  
+    docentes1: function() {     
+      return Docentes.find().fetch().map(function(object){ return {id: object._id, value: object.nombreDni}; });    
+    },
     
 });
 
@@ -165,7 +190,7 @@ Template.mesas.events({
   });
   
   
-  Template.mesaForm.onRendered(function() {
+  Template.mesas.onRendered(function() {
   
     Meteor.typeahead.inject();
   });
