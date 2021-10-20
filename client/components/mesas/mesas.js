@@ -1,6 +1,10 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
 import { Mesas } from '../../../lib/collections/mesas';
+import { Carreras } from '../../../lib/collections/carreras';
+import { Docentes } from '../../../lib/collections/docentes';
+import { Llamados } from '../../../lib/collections/llamados';
+import { Materias } from '../../../lib/collections/materias';
 import { Router } from 'meteor/iron:router';
 import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
@@ -8,7 +12,8 @@ import { ReactiveVar } from 'meteor/reactive-var'
 
 Template.mesas.onCreated(function(){       
   this.selMesaInfo = new ReactiveVar(null);
-  this.selMesaEditar = new ReactiveVar(null);    
+  this.selMesaEditar = new ReactiveVar(null);  
+  this.selLlamado = new ReactiveVar(null);  
 });
 
 Template.mesas.helpers({
@@ -16,7 +21,17 @@ Template.mesas.helpers({
       return {
           placeholder: 'Buscar ...',
       };
-    },    
+    }, 
+    
+    formCollection() {
+      return Materias;
+    },
+    formCollection() {
+      return Llamados;
+    },
+    formCollection() {
+      return Docentes;
+    },
 
     mesaInfo: function() {     
       return Template.instance().selMesaInfo.get();        
@@ -24,6 +39,14 @@ Template.mesas.helpers({
 
     mesaEditar: function() {     
       return Template.instance().selMesaEditar.get();        
+    },
+
+    selecLlamado: function(event, suggestion, datasetName) {
+      Template.instance().selLlamado.set(suggestion.id);  		
+    },
+
+    llamados1: function() {     
+      return Llamados.find().fetch().map(function(object){ return {id: object._id, value: object.numeroNombre}; });    
     },
     
 });
