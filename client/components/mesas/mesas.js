@@ -14,6 +14,14 @@ Template.mesas.onCreated(function(){
   this.selMesaInfo = new ReactiveVar(null);
   this.selMesaEditar = new ReactiveVar(null);  
   this.selLlamado = new ReactiveVar(null);  
+
+
+  
+  this.selMateria = new ReactiveVar(null);  
+
+  this.selPresidente = new ReactiveVar(null);
+  this.selVocal1 = new ReactiveVar(null);
+  this.selVocal2 = new ReactiveVar(null);
 });
 
 Template.mesas.helpers({
@@ -101,34 +109,45 @@ Template.mesas.events({
       // Get value from form element
       const target = event.target;  
 
-      if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};		
-      ingresoLlamado = Template.instance().selCarrera.get();			
+      //RECUPERO EL ID DEL LLAMADO INGRESADO
+      var ingresoLlamado = Template.instance().selLlamado.get();	
 
+      //DECLARO LAS VARIABLES
       var idLlamado;	
       var nombreLlamado;
       var numeroLlamado;
-      var llamadoSeleccionado = Llamados.findOne({"_id":ingresoLlamado});
+
+      var llamadoSeleccionado = Llamados.findOne({"_id":ingresoLlamado}); //BUSCO LA COLLECION CON EL ID INGRESADO
+      
+      //AHORA SETEO LAS VARIABLES
       if (llamadoSeleccionado){
         idLlamado = llamadoSeleccionado._id;
         nombreLlamado = llamadoSeleccionado.nombre;
         numeroLlamado = llamadoSeleccionado.numero;			
       }  
-  
+
+
+      //RECUPERO EL ID DE LA MATERIA INGRESADO
+      var ingresoMateria = Template.instance().selMateria.get();
+
+      //DECLARO LAS VARIABLES
       var idCarrera;	
       var nombreCarrera;	
       var idMateria;			
       var nombreMateria;		
       
-      var materiaSeleccionada = Materias.findOne({"_id":ingresoMateria});//obtengo la Carrera seleccionada (objeto)     		
-      if (materiaSeleccionada){		
-        
+      var materiaSeleccionada = Materias.findOne({"_id":ingresoMateria});//obtengo la Carrera seleccionada (objeto)	
+      if (materiaSeleccionada){	
+
         idMateria = materiaSeleccionada._id;	
         nombreMateria = materiaSeleccionada.nombre;	
-  
+
         idCarrera = materiaSeleccionada.idCarrera;	
         nombreCarrera = materiaSeleccionada.nombreCarrera;
       } 
-  
+
+      var ingresoPresidente = Template.instance().selPresidente.get();  //selecPresidente
+
       var idPresidente;		
       var nombrePresidente;
       var dniPresidente;
@@ -138,7 +157,12 @@ Template.mesas.events({
         nombrePresidente = presidenteSeleccionada.nombreApellido;
         dniPresidente = presidenteSeleccionada.dni;
       } 
-      
+
+      var ingresoVocal1 = Template.instance().selVocal1.get(); //selecVocal1
+
+
+      var ingresoVocal2 = Template.instance().selVocal2.get(); 	
+
       var idVocal1;		
       var nombreVocal1;
       var dniVocal1;
@@ -149,6 +173,8 @@ Template.mesas.events({
         dniVocal1 = vocal1Seleccionada.dni;
       }
   
+      if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};	
+      
       var idVocal2;		
       var nombreVocal2;
       var dniVocal2;
@@ -158,12 +184,9 @@ Template.mesas.events({
         nombreVocal2 = vocal2Seleccionada.nombreApellido;
         dniVocal2 = vocal2Seleccionada.dni;
       }
-  
       
-        
-      Mesas.insert({	
-        
-  
+      var mesa = Template.instance().selMesaEditar.get()
+      Mesas.update({_id:mesa._id},{$set: {            
         idLlamado:idLlamado, 
         nombreLlamado:nombreLlamado,
         numeroLlamado:numeroLlamado,
@@ -176,16 +199,14 @@ Template.mesas.events({
         
         idPresidente:idPresidente,			
         nombrePresidente:nombrePresidente,
-  
+
         idVocal1:idVocal1,
         nombreVocal1:nombreVocal1,
-  
+
         idVocal2:idVocal2,
-        nombreVocal2:nombreVocal2,			
-            
-      });
-        
-        Router.go('/mesas');
+        nombreVocal2:nombreVocal2,	           
+      }});
+        $('#modalMesaEditar').modal('hide'); //CIERRO LA VENTANA MODAL              
       }
   });
   
