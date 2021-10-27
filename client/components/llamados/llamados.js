@@ -56,14 +56,14 @@ Template.llamados.events({
 
         if (target.fechaDesde.value){
           var fechaDesde = target.fechaDesde.value;
-          fechaDesde = moment(fechaDesde, "DD-MM-YYYY");
-          fechaDesde = new Date(fechaDesde);//.toDateString("dd-MM-yyyy");          
+		  fechaDesde = fechaDesde+'T00:00:00';		  
+          fechaDesde = new Date(fechaDesde).toDateString("dd-MM-yyyy");		  		  
         };
 
         if (target.fechaHasta.value){
           var fechaHasta = target.fechaHasta.value;
-          fechaHasta = moment(fechaHasta, "DD-MM-YYYY");
-          fechaHasta = new Date(fechaHasta);//.toDateString("dd-MM-yyyy");          
+		  fechaHasta = fechaHasta+'T00:00:00';          
+          fechaHasta = new Date(fechaHasta).toDateString("dd-MM-yyyy");          
         };
 
       	var llamado = Template.instance().selLlamadoEditar.get();
