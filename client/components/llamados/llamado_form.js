@@ -34,17 +34,20 @@ Template.llamadoForm.events({
         var espacio = " "; 
   	    var combinacion = ingresoNombre.concat(espacio);
   	    combinacion = combinacion.concat(ingresoNumero);
-        
+
         if (target.fechaDesde.value){
           var fechaDesde = target.fechaDesde.value;
-          fechaDesde = moment(fechaDesde, "DD-MM-YYYY");
-          fechaDesde = new Date(fechaDesde).toDateString("dd-MM-yyyy");          
+		  fechaDesde = fechaDesde+'T00:00:00';		  
+          fechaDesde = new Date(fechaDesde).toDateString("dd-MM-yyyy");		  		  
         };
+        
+        
         if (target.fechaHasta.value){
           var fechaHasta = target.fechaHasta.value;
-          fechaHasta = moment(fechaHasta, "DD-MM-YYYY");
+		  fechaHasta = fechaHasta+'T00:00:00';          
           fechaHasta = new Date(fechaHasta).toDateString("dd-MM-yyyy");          
-        };        
+        };          
+                
         if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};
 
         //ESTE CODIGO CONCATENA EL NUMERO Y EL NOMBRE DEL LLAMADO
