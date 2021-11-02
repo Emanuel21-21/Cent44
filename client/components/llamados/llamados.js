@@ -12,8 +12,11 @@ Template.llamados.onCreated(function(){
 });
 
 Template.registerHelper('formatDate2', function(date) {
-  return moment(date).format('DD-MM-YYYY');
+return moment(date).format('DD-MM-YYYY');
 });
+Template.registerHelper('formatDate3', function(date) {
+	return moment(date).format('YYYY-MM-DD');
+	});
 
 Template.llamados.helpers({
   	searchAttributes() {

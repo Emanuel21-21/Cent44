@@ -64,7 +64,7 @@ Template.materiaForm.events({
 		ingresoDocente = Template.instance().selDocente2.get(); 	
 		
 		if (target.anio.value){ingresoAnio = target.anio.value};
-		if (target.duracion.value){ingresoDuracion = true};
+		if (target.duracion.value == true){ingresoDuracion = true} else {ingresoDuracion = false};
 		if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};					
 
 		var idCarrera;	
