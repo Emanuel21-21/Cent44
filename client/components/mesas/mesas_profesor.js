@@ -8,7 +8,7 @@ import { Mesas } from '../../../lib/collections/mesas';
 // Required AutoForm setup
 SimpleSchema.extendOptions(['autoform']);
 
-Template.mesaForm.onCreated(function(){    
+Template.mesasProfesor.onCreated(function(){    
   this.selLlamado = new ReactiveVar(null);
   this.selMateria = new ReactiveVar(null);  
 
@@ -17,7 +17,7 @@ Template.mesaForm.onCreated(function(){
   this.selVocal2 = new ReactiveVar(null);
 });
 
-Template.mesaForm.helpers({
+Template.mesasProfesor.helpers({
 	formCollection() {
 		return Materias;
 	},
@@ -57,7 +57,7 @@ Template.mesaForm.helpers({
 	},
 })
 
-Template.mesaForm.events({  
+Template.mesasProfesor.events({  
 
     'submit #formMesa':function(event) {
 	    // Prevent default browser form submit
@@ -169,7 +169,7 @@ Template.mesaForm.events({
 });
 
 
-Template.mesaForm.onRendered(function() {
+Template.mesasProfesor.onRendered(function() {
 
 	Meteor.typeahead.inject();
 });

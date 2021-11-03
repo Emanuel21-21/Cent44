@@ -38,15 +38,15 @@ Meteor.publish('mesas', function projectsPublication()
       return Mesas.find();  
     }
     else{
-		var mostrar2 = Roles.userIsInRole(this.userId,['alumno']);
+		var mostrar2 = Roles.userIsInRole(this.userId,['alumno']);		
 		if (mostrar2){ //ES ALUMNO
 			alumnoLogueado = Alumnos.findOne({idUser:this.userId});		
 			// AHORA TENGO QUE RECUPERAR LA CARRERA DEL ALUMNO
 			
 			// AHORA TENGO QUE TRAER TODAS LAS MESAS CON LA CARRERA DEL ALUMNO			
 			return Mesas.find({nombreCarrera: alumnoLogueado.carrera});
-		}else{ // ES PROFESOR
-			profesorLogueado = Profesores.findOne({idUser:this.userId});
+		}else{ // ES PROFESOR			
+			profesorLogueado = Docentes.findOne({idUser:this.userId});			
 			return Mesas.find({idPresidente: profesorLogueado._id});
 		}
 
