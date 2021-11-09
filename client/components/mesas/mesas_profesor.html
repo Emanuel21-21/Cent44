@@ -1,6 +1,68 @@
 <template name="mesasProfesor">
 
 
+	<div class="modal" id="modalMesaInfo" role="dialog">									  	
+		<div class="modal-dialog modal-md">										    
+  
+		<!-- Modal content-->
+		<div class="modal-content">
+			
+		  
+		  <div class="modal-body">
+			  <div class="panel panel-info">
+					<div class="panel-heading">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>          
+						<h3>Información de la mesa</h3>
+					</div>					  	
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th class="col-xs-4"></th>
+								<th class="col-xs-8"></th>	                    
+							</tr>
+						  </thead>				
+						  <tbody>
+							<tr>
+								<td><strong><p>Materia</p></strong></td>
+								<td>{{mesaInfo.nombreMateria}}</td>
+							</tr>		    						      
+							<tr>
+								<td><strong><p>Carrera</p></strong></td>
+								<td>{{mesaInfo.nombreCarrera}}</td>
+							</tr>
+							<tr>
+								<td><strong><p>Llamado</p></strong></td>
+								<td>{{mesaInfo.nombreLlamado}}</td>
+							</tr>	 
+							<tr>
+							  <td><strong><p>Numero</p></strong></td>
+							  <td>{{mesaInfo.numeroLlamado}}</td>
+						  </tr>	
+						  <tr>
+							  <td><strong><p>Docente</p></strong></td>
+							  <td>{{mesaInfo.nombrePresidente}}</td>
+						  </tr>     						      					      						      
+						  </tbody>	
+					  </table>
+						<div class="form-group">
+						<label for="usr">Comentarios de la mesa</label>
+						<textarea disabled class="form-control" rows="5" id="descripcion" value={{mesaInfo.descripcion}}></textarea>
+					  </div> 
+					
+				  
+					</div>
+			  </div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		  </div>
+		</div>
+		
+	  </div>
+  </div>	
+
+
 	<div class="panel panel-success">
 	  	<div class="panel-heading"><strong><h3>Lista de mesas</h3></strong></div>
 	  	<div class="panel-body">		    
@@ -28,7 +90,7 @@
 				        <td>
 				        	<span class="right">				        	
 							<a href="#"	class="modalMesaInfo btn btn-info btn-xs">Detalle</a>
-							<a href="#" class="modalMesaEditar btn btn-warning btn-xs">Editar</a>							
+														
 							</span>
 						</td>
 				      </tr>

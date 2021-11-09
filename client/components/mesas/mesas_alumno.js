@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Materias } from '../../../lib/collections/materias';
 import { Carreras } from '../../../lib/collections/carreras';
 import { Docentes } from '../../../lib/collections/docentes';
+import { Mesas } from '../../../lib/collections/mesas';
 import { Router } from 'meteor/iron:router';
 import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
@@ -13,6 +14,7 @@ Template.mesasAlumno.onCreated(function(){
   this.selMateriaEditar = new ReactiveVar(null);
   this.selCarrera2 = new ReactiveVar(null);
   this.selDocente2 = new ReactiveVar(null);
+  this.selMesaInfo = new ReactiveVar(null);
 });
 
 Template.mesasAlumno.helpers({
@@ -44,6 +46,10 @@ Template.mesasAlumno.helpers({
     docentes1: function() {     
       return Docentes.find().fetch().map(function(object){ return {id: object._id, value: object.nombreDni}; });    
     },
+
+    mesaInfo: function() {     
+      return Template.instance().selMesaInfo.get();        
+    },
 });
 
 
@@ -61,6 +67,11 @@ Template.mesasAlumno.events({
       Template.instance().selMateriaEditar.set(materia);
       $('#modalMateriaEditar').modal('show');
     }, 
+    'click .modalMesaInfo': function(event, template){   
+      var mesa = Mesas.findOne({"_id":this._id});      
+      Template.instance().selMesaInfo.set(mesa);
+      $('#modalMesaInfo').modal('show');
+      },  
 
     'submit #formModificarMateria':function(event) {
       // Prevent default browser form submit
