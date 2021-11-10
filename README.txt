@@ -10,3 +10,25 @@ El Alumno debe poder:
 
 Hay que restringir las vistas a los alumnos y docentes, Por ejemplo el docente no puede acceder a la ruta http://localhost:3000/mesas
 Sacar el editar y mostrar el detalle (Listo)
+
+//LOS DATOS QUE SE VAN A GUARDAR DEL ALUMNO EN LA MESA SON:
+materia / carrera
+MESA1 (MATEMATICA-PETROLEO)
+{
+    {   alumno1
+        id1
+        dni1
+        email
+
+    }
+    {
+        alumno2
+        id2
+        dni2
+    }
+    {
+        alumno3
+        id3
+        dni3
+    }
+}

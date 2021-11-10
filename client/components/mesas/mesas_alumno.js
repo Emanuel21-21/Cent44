@@ -4,6 +4,7 @@ import { Materias } from '../../../lib/collections/materias';
 import { Carreras } from '../../../lib/collections/carreras';
 import { Docentes } from '../../../lib/collections/docentes';
 import { Mesas } from '../../../lib/collections/mesas';
+import { Alumnos } from '../../../lib/collections/alumnos';
 import { Router } from 'meteor/iron:router';
 import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
@@ -11,7 +12,7 @@ import { ReactiveVar } from 'meteor/reactive-var'
 
 Template.mesasAlumno.onCreated(function(){       
   this.selMateriaInfo = new ReactiveVar(null);  
-  this.selMateriaEditar = new ReactiveVar(null);
+  this.selMesaAnotar = new ReactiveVar(null);
   this.selCarrera2 = new ReactiveVar(null);
   this.selDocente2 = new ReactiveVar(null);
   this.selMesaInfo = new ReactiveVar(null);
@@ -23,6 +24,10 @@ Template.mesasAlumno.helpers({
       		placeholder: 'Buscar ...',
     	};
   	},
+
+    formCollection() {
+      return Mesas;
+    },
 
   	materiaInfo: function() {     
     	return Template.instance().selMateriaInfo.get();        
@@ -50,6 +55,10 @@ Template.mesasAlumno.helpers({
     mesaInfo: function() {     
       return Template.instance().selMesaInfo.get();        
     },
+
+    mesaAnotar: function() {     
+      return Template.instance().selMesaAnotar.get();        
+    },
 });
 
 
@@ -62,10 +71,10 @@ Template.mesasAlumno.events({
   		$('#modalMateriaInfo').modal('show');
     },    
 
-    'click .modalMateriaEditar': function(event, template){   
-      var materia = Materias.findOne({"_id":this._id});      
-      Template.instance().selMateriaEditar.set(materia);
-      $('#modalMateriaEditar').modal('show');
+    'click .modalMesaAnotar': function(event, template){   
+      var mesa = Mesas.findOne({"_id":this._id});      
+      Template.instance().selMesaAnotar.set(mesa);
+      $('#modalMesaAnotar').modal('show');
     }, 
     'click .modalMesaInfo': function(event, template){   
       var mesa = Mesas.findOne({"_id":this._id});      
@@ -73,51 +82,37 @@ Template.mesasAlumno.events({
       $('#modalMesaInfo').modal('show');
       },  
 
-    'submit #formModificarMateria':function(event) {
+    'submit #formMesaAnotar':function(event) {
       // Prevent default browser form submit
       event.preventDefault();
 
       // Get value from form element
-      const target = event.target;  
+      const target = event.target; 
 
-      if (target.nombre.value){var ingresoNombre = target.nombre.value};      
-      ingresoCarrera = Template.instance().selCarrera2.get();      
-      ingresoDocente = Template.instance().selDocente2.get();            
-      if (target.descripcion.value){var ingresoDescripcion = target.descripcion.value};        
+      //1) Agregar el alumno a la mesa
+      //recupero los datos a insertar
+      var mesaRecuperada = Template.instance().selMesaAnotar.get();
+      var usuarioLogueado = Meteor.user();
+      console.log('EL USUARIO LOGUEADO ES: ', usuarioLogueado._id);
+      var datosAlumno = Alumnos.findOne({idUser: usuarioLogueado._id});
+      console.log('LOS DATOS DEL ALUMNO SON: ', datosAlumno);
 
+      //Creo mi Array con los datos para insertar   
       
-      var idCarrera;
-      var nombreCarrera;
-      var carreraSeleccionada = Carreras.findOne({"_id":ingresoCarrera});//obtengo la Carrera seleccionada (objeto)     
-      if (carreraSeleccionada){
-        idCarrera = carreraSeleccionada._id; 
-        nombreCarrera = carreraSeleccionada.nombre;
-      }
+		  let alu= {	_id: datosAlumno._id,
+                  nombreApellido:datosAlumno.nombreApellido,
+                  dni:datosAlumno.dni,
+                  email:datosAlumno.email,          
+      }; 
 
-      var idDocente;
-      var nombreDocente;
-      var dniDocente;
-      var docenteSeleccionada = Docentes.findOne({"_id":ingresoDocente});//obtengo el Docente seleccionado (objeto)     
-      if (docenteSeleccionada){
-        idDocente = docenteSeleccionada._id; 
-        nombreDocente = docenteSeleccionada.nombreApellido;
-        dniDocente = docenteSeleccionada.dni;
-      }
+      console.log('EL DOCUMENTO PARA INSERTAR ES: ',alu);
 
-      var materia = Template.instance().selMateriaEditar.get();
+      //inserto los datos en la base de datos
+      Mesas.update({_id:mesaRecuperada._id},{$push:{alumnosMesas:alu}});	     
+      //Profesionales.update({_id:profesional._id},{$push:{mistratamientos:trat}});
 
-      Materias.update({_id:materia._id},{$set: {
-        nombre:ingresoNombre,         
-        idCarrera:idCarrera,
-        nombreCarrera:nombreCarrera,
-        idDocente:idDocente,
-        nombreDocente:nombreDocente,
-        dniDocente:dniDocente,
-        descripcion:ingresoDescripcion,        
-      }});
-
-      $('#modalMateriaEditar').modal('hide'); //CIERRO LA VENTANA MODAL      
-  },
+      $('#modalMesaAnotar').modal('hide'); //CIERRO LA VENTANA MODAL      
+    },
 })
 
 

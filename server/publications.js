@@ -13,7 +13,25 @@ Meteor.publish('docentes', function projectsPublication()
 
 Meteor.publish('alumnos', function projectsPublication()
 {
-	return Alumnos.find({owner: this.userId});
+	var mostrar = Roles.userIsInRole(this.userId,['admin']);
+    if (mostrar){
+      return Alumnos.find();  
+    }
+    else{
+		var mostrar2 = Roles.userIsInRole(this.userId,['alumno']);		
+		if (mostrar2){ //ES ALUMNO			
+			// AHORA TENGO QUE TRAER SOLO LOS DATOS DEL ALUMNO LOGUEADO
+			return Alumnos.find({idUser: this.userId});
+		}else{ // ES PROFESOR			
+			//profesorLogueado = Docentes.findOne({idUser:this.userId});			
+			return Alumnos.find();
+		}
+
+      	
+    }
+	
+	//return Alumnos.find({owner: this.userId});
+	return Alumnos.find();
 });
 
 Meteor.publish('carreras', function projectsPublication()
