@@ -82,7 +82,7 @@ Template.mesasAlumno.events({
       $('#modalMesaInfo').modal('show');
       },  
 
-    'submit #formMesaAnotar':function(event) {
+    'submit #formMesaAnotar':function(event,template) {
       // Prevent default browser form submit
       event.preventDefault();
 
@@ -108,7 +108,7 @@ Template.mesasAlumno.events({
       console.log('EL DOCUMENTO PARA INSERTAR ES: ',alu);
 
       //inserto los datos en la base de datos
-      Mesas.update({_id:mesaRecuperada._id},{$push:{alumnosMesas:alu}});	     
+      Mesas.update({_id:mesaRecuperada._id},{$push:{alumnosMesa:alu}});	     
       //Profesionales.update({_id:profesional._id},{$push:{mistratamientos:trat}});
 
       $('#modalMesaAnotar').modal('hide'); //CIERRO LA VENTANA MODAL      
