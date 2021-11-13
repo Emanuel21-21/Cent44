@@ -125,9 +125,7 @@
 	  	<div class="panel-heading"><strong><h3>Lista de mesas</h3></strong></div>
 	  	<div class="panel-body">		    
 		    <div class="col-lg-12">
-			    <a class="btn btn-success btn-md" href="{{ pathFor 'mesa_form'}}">
-					Añadir nueva mesa
-				</a>					
+			    					
 		      		{{> EasySearch.Input index=mesas attributes=searchAttributes }}
 		      		<hr />
 	      	</div>			
@@ -151,7 +149,12 @@
 				        <td>
 				        	<span class="right">				        	
 							<a href="#"	class="modalMesaInfo btn btn-info btn-xs">Detalle</a>
-							<a href="#" class="modalMesaAnotar btn btn-success btn-xs">Anotarme</a>							
+							<a href="#" class="modalMesaAnotar btn btn-success btn-xs">Anotarme</a>	
+							<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+							<a href="#" class="modalMesaCancelar btn btn-danger btn-xs">Cancelar</a>	
+							
+					
+							
 							</span>
 						</td>
 				      </tr>

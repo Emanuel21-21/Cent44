@@ -10,6 +10,8 @@ import SimpleSchema from 'simpl-schema';
 import { check } from 'meteor/check';
 import { ReactiveVar } from 'meteor/reactive-var'
 
+
+
 Template.mesasAlumno.onCreated(function(){       
   this.selMateriaInfo = new ReactiveVar(null);  
   this.selMesaAnotar = new ReactiveVar(null);
@@ -81,6 +83,11 @@ Template.mesasAlumno.events({
       Template.instance().selMesaInfo.set(mesa);
       $('#modalMesaInfo').modal('show');
       },  
+      'click .modalMesaBorrar': function(event, template){   
+        var mesa = Mesas.findOne({"_id":this._id});      
+        Template.instance().selMesaBorrar.set(mesa);
+        $('#modalMesaBorrar').modal('show');
+      }, 
 
     'submit #formMesaAnotar':function(event,template) {
       // Prevent default browser form submit
@@ -111,9 +118,14 @@ Template.mesasAlumno.events({
       Mesas.update({_id:mesaRecuperada._id},{$push:{alumnosMesa:alu}});	     
       //Profesionales.update({_id:profesional._id},{$push:{mistratamientos:trat}});
 
-      $('#modalMesaAnotar').modal('hide'); //CIERRO LA VENTANA MODAL      
+      $('#modalMesaAnotar').modal('hide'); //CIERRO LA VENTANA MODAL   
+      swal("Perfecto! Ya te anotaste al final.", "Te deseamos Exitos! :D", "success");
+
     },
+  
+    
 })
+
 
 
 Template.mesasAlumno.onRendered(function() {
