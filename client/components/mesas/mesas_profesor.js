@@ -34,7 +34,7 @@ Template.mesasProfesor.events({
 		var mesa = Mesas.findOne({"_id":this._id});      
 		Template.instance().selMesaInfo.set(mesa);
 		$('#modalMesaInfo').modal('show');
-		},  
+	},  
 
     
 });

@@ -75,9 +75,11 @@
 					<thead>
 				      <tr>
 			          	<th class="#80cbc4 teal-text">MATERIA</th>
-						  <th class="#80cbc4 teal-text">CARRERA</th>
-			          	<th class="#80cbc4 teal-text">LLAMADO</th>
-			          	<th class="#80cbc4 teal-text">NUMERO</th>			          				          	
+						  	<th class="#80cbc4 teal-text">CARRERA</th>
+			          		<th class="#80cbc4 teal-text">LLAMADO</th>
+			          		<th class="#80cbc4 teal-text">NUMERO</th>	
+						  	<th class="#80cbc4 teal-text"># Alumnos</th>
+						  	<th class="#80cbc4 teal-text">ID</th>		          				          	
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -86,10 +88,21 @@
 				        <td>{{nombreMateria}}</td>
 				        <td>{{nombreCarrera}}</td>
 						<td>{{nombreLlamado}}</td>				        
-				        <td>{{numeroLlamado}}</td>				        				        
+				        <td>{{numeroLlamado}}</td>
+						{{#if alumnosMesa.length}}						
+							<td style="color:#2DDF1E;"> <strong>{{alumnosMesa.length}}</strong> </td>											
+						{{else}}													
+							<td>0</td>											
+						{{/if}}
+
+						
+						<td>{{_id}}</td>				        				        
 				        <td>
 				        	<span class="right">				        	
 							<a href="#"	class="modalMesaInfo btn btn-info btn-xs">Detalle</a>
+							<a href="{{ pathFor 'alumnos_notas' _id=_id}}"	class="btn btn-success btn-xs">Alumnos</a>
+
+							<!-- href="{{ pathFor 'tratamiento_detail' _id=_id}}" -->
 														
 							</span>
 						</td>
