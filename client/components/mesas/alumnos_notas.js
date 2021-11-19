@@ -8,6 +8,7 @@ import { Mesas } from '../../../lib/collections/mesas';
 // Required AutoForm setup
 SimpleSchema.extendOptions(['autoform']);
 
+
 Template.alumnosNotas.onCreated(function(){    
   this.selLlamado = new ReactiveVar(null);
   this.selMateria = new ReactiveVar(null);  
