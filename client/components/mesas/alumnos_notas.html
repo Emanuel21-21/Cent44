@@ -1,4 +1,43 @@
-<template name="alumnosNotas">	
+<template name="alumnosNotas">	  
+
+  <!-- ******************MODAL EDITAR MATERIA********************************-->
+  <div class="modal" id="modalCargarNota" role="dialog">
+    <div class="modal-dialog modal-md">										    
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <form class="form" id="formCargarNota">			
+        <div class="modal-body">
+      <div class="panel panel-warning">
+          <div class="panel-heading">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>          
+            <h3>Editar Nota del alumno {{idAlumnosNotas}}</h3>
+          </div>					  	
+          <div class="panel-body">            
+              <div class="form-group">
+                <label>NOTA</label>
+                <input type="number" class="form-control" id="nota">
+              </div>
+              <div class="form-group">
+                <label>Presente</label>
+                <input type="checkbox" class="form-control" id="estado" checked>
+              </div>
+          </div>
+      </div>
+        </div> 
+  
+        <div class="modal-footer">
+      <button type="submit" id="submit" class="btn btn-success">Guardar</button>						        	
+      <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+    </div>   
+    </form>	       
+          
+      </div>
+      
+    </div>
+  </div>
+
+
     {{#with mesa}}
         <div class="panel panel-default">
           <div class="panel-heading"><h3>Cantidad de alumnos anotados en <strong>{{nombreMateria}}</strong></h3></div>
@@ -8,7 +47,10 @@
                     {{#each alumnosMesa}}
                     <tr>
                       <td>{{nombreApellido}}</td>
-                      <td><a href="#" class="removerTratamiento"> <button class="btn btn-success btn-xs">Cargar nota</button></a></td>
+                      <td>{{nota}}</td>
+                      <td>{{estado}}</td>
+
+                      <td><a href="#"> <button class="modalCargarNota btn btn-success btn-xs">Cargar nota</button></a></td>
                     </tr>
                         {{/each}}
                  
@@ -17,4 +59,7 @@
           </div>
         </div>
     {{/with}}
-    </template>
+  
+  
+  
+  </template>

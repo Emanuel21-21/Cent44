@@ -32,3 +32,7 @@ MESA1 (MATEMATICA-PETROLEO)
         dni3
     }
 }
+
+//19-11-2021
+
+Hay que controlar que el alumno no se cargue mas de una vez a la materia
