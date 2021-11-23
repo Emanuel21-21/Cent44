@@ -5,6 +5,7 @@ import { Carreras } from '../../../lib/collections/carreras';
 import { Docentes } from '../../../lib/collections/docentes';
 import { Llamados } from '../../../lib/collections/llamados';
 import { Mesas } from '../../../lib/collections/mesas';
+import { Alumnos } from '../../../lib/collections/alumnos';
 // Required AutoForm setup
 SimpleSchema.extendOptions(['autoform']);
 
@@ -16,6 +17,7 @@ Template.alumnosNotas.onCreated(function(){
   this.selPresidente = new ReactiveVar(null);
   this.selVocal1 = new ReactiveVar(null);
   this.selVocal2 = new ReactiveVar(null);
+  this.selIdAlumnosMesa = new ReactiveVar(null);
 });
 
 Template.alumnosNotas.helpers({
@@ -28,6 +30,10 @@ Template.alumnosNotas.helpers({
 	formCollection() {
 		return Docentes;
 	},
+
+	idAlumnosNotas: function() {     
+		return Template.instance().selIdAlumnosMesa.get();        
+	  },
 	
 	selecLlamado: function(event, suggestion, datasetName) {
 		Template.instance().selLlamado.set(suggestion.id);  		
@@ -58,7 +64,13 @@ Template.alumnosNotas.helpers({
 	},
 })
 
-Template.alumnosNotas.events({  
+Template.alumnosNotas.events({ 
+	
+	'click .modalCargarNota': function(event, template){   
+		var idAl = this._id;
+		Template.instance().selIdAlumnosMesa.set(idAl);		
+		$('#modalCargarNota').modal('show');
+	  }, 
 
     'submit #formMesa':function(event) {
 	    // Prevent default browser form submit
@@ -166,7 +178,54 @@ Template.alumnosNotas.events({
 		});
 			
 	    Router.go('/mesas');
-		}
+	},
+
+	'submit #formCargarNota':function(event,template) {
+	    // Prevent default browser form submit
+		event.preventDefault();
+
+		// Get value from form element
+		const target = event.target;			
+		var ingresoNota = null;
+		var ingresoEstado;
+		
+		if (target.nota.value){ingresoNota = target.nota.value; ingresoEstado = 'Presente'};					
+		//if (target.estado.value){ingresoEstado = target.estado.value};
+		
+		let mesaRecuperada = template.data.mesa;//obtengo la mesa		
+
+		var idAl = Template.instance().selIdAlumnosMesa.get();  //aca obtengo el id del alumno para poder insertar en el array
+		
+	  	//Traigo elemento de la bd del alumno
+		var alumnoObjeto = Alumnos.findOne({_id:idAl});
+		console.log('EL OBJETO DEL ALUMNO ES:', alumnoObjeto);
+		
+		//Creo mi Array con los datos para actualizar   
+
+		/* nombreApellido:datosAlumno.nombreApellido,
+                  dni:datosAlumno.dni,
+                  email:datosAlumno.email, */
+      
+		let alu= {	_id: idAl,
+					nombreApellido: alumnoObjeto.nombreApellido,
+					dni: alumnoObjeto.dni,
+					email: alumnoObjeto.email,
+					nota: ingresoNota,
+					estado: ingresoEstado,
+      	}; 
+
+		console.log('EL DOCUMENTO PARA ACTUALIZAR ES: ',alu);
+
+		//primero elimino el alumno del array
+		Meteor.call('mesas.removeAlumno',mesaRecuperada._id, idAl);
+		
+		
+		Mesas.update({_id:mesaRecuperada._id},{$push:{alumnosMesa:alu}});	     
+		//Profesionales.update({_id:profesional._id},{$push:{mistratamientos:trat}});
+
+		$('#modalCargarNota').modal('hide');
+	    Router.go('/mesas_profesor');
+	}
 });
 
 
