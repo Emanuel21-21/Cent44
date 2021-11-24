@@ -11,12 +11,12 @@
       <div class="panel panel-warning">
           <div class="panel-heading">
             <button type="button" class="close" data-dismiss="modal">&times;</button>          
-            <h3>Editar Nota del alumno {{idAlumnosNotas}}</h3>
+            <h3>Cagar Nota de <strong>{{alumnoNota}}</strong></h3>
           </div>					  	
           <div class="panel-body">            
-              <div class="form-group">
+              <div class="form-group col-lg-4">
                 <label>NOTA</label>
-                <input type="number" class="form-control" id="nota">
+                <input type="number" min="1" max="10" class="form-control" id="nota">
               </div>
              
           </div>

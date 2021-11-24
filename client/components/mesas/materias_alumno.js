@@ -12,7 +12,7 @@ import { ReactiveVar } from 'meteor/reactive-var'
 
 
 
-Template.mesasAlumno.onCreated(function(){       
+Template.materiasAlumno.onCreated(function(){       
   this.selMateriaInfo = new ReactiveVar(null);  
   this.selMesaAnotar = new ReactiveVar(null);
   this.selCarrera2 = new ReactiveVar(null);
@@ -20,7 +20,7 @@ Template.mesasAlumno.onCreated(function(){
   this.selMesaInfo = new ReactiveVar(null);
 });
 
-Template.mesasAlumno.helpers({
+Template.materiasAlumno.helpers({
   	searchAttributes() {
     	return {
       		placeholder: 'Buscar ...',
@@ -64,7 +64,7 @@ Template.mesasAlumno.helpers({
 });
 
 
-Template.mesasAlumno.events({
+Template.materiasAlumno.events({
 	
 
   	'click .modalMateriaInfo': function(event, template){   
@@ -129,7 +129,7 @@ Template.mesasAlumno.events({
 
 
 
-Template.mesasAlumno.onRendered(function() {
+Template.materiasAlumno.onRendered(function() {
   //$('.fechaNacimiento').mask('dd/mm/aaaa');
   $("#fechaNacimiento2").inputmask("d-m-y");
   $("#fechaIngreso2").inputmask("d-m-y");

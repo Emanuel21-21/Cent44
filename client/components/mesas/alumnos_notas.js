@@ -17,7 +17,7 @@ Template.alumnosNotas.onCreated(function(){
   this.selPresidente = new ReactiveVar(null);
   this.selVocal1 = new ReactiveVar(null);
   this.selVocal2 = new ReactiveVar(null);
-  this.selIdAlumnosMesa = new ReactiveVar(null);
+  this.selIdAlumnosMesa = new ReactiveVar(null);  
 });
 
 Template.alumnosNotas.helpers({
@@ -30,6 +30,14 @@ Template.alumnosNotas.helpers({
 	formCollection() {
 		return Docentes;
 	},
+
+	alumnoNota: function() { 
+		var idAl = Template.instance().selIdAlumnosMesa.get();        		
+		var al = Alumnos.findOne({_id:idAl});
+		var may = al.nombreApellido.toUpperCase();
+		console.log(may);
+		return may;
+	  },
 
 	idAlumnosNotas: function() {     
 		return Template.instance().selIdAlumnosMesa.get();        
@@ -189,8 +197,10 @@ Template.alumnosNotas.events({
 		var ingresoNota = null;
 		var ingresoEstado;
 		
-		if (target.nota.value){ingresoNota = target.nota.value; ingresoEstado = 'Presente'};					
-		//if (target.estado.value){ingresoEstado = target.estado.value};
+		if (target.nota.value){
+			ingresoNota = target.nota.value; 
+			ingresoEstado = 'Presente';
+		};							
 		
 		let mesaRecuperada = template.data.mesa;//obtengo la mesa		
 

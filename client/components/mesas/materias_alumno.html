@@ -1,0 +1,180 @@
+<template name="materiasAlumno">
+
+
+	<div class="modal" id="modalMesaInfo" role="dialog">									  	
+		<div class="modal-dialog modal-md">										    
+  
+		<!-- Modal content-->
+		<div class="modal-content">
+			
+		  
+		  <div class="modal-body">
+			  <div class="panel panel-info">
+					<div class="panel-heading">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>          
+						<h3>Información de la mesa</h3>
+					</div>					  	
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th class="col-xs-4"></th>
+								<th class="col-xs-8"></th>	                    
+							</tr>
+						  </thead>				
+						  <tbody>
+							<tr>
+								<td><strong><p>Materia</p></strong></td>
+								<td>{{mesaInfo.nombreMateria}}</td>
+							</tr>		    						      
+							<tr>
+								<td><strong><p>Carrera</p></strong></td>
+								<td>{{mesaInfo.nombreCarrera}}</td>
+							</tr>
+							<tr>
+								<td><strong><p>Llamado</p></strong></td>
+								<td>{{mesaInfo.nombreLlamado}}</td>
+							</tr>	 
+							<tr>
+							  <td><strong><p>Numero</p></strong></td>
+							  <td>{{mesaInfo.numeroLlamado}}</td>
+						  </tr>	
+						  <tr>
+							  <td><strong><p>Docente</p></strong></td>
+							  <td>{{mesaInfo.nombrePresidente}}</td>
+						  </tr>     						      					      						      
+						  </tbody>	
+					  </table>
+						<div class="form-group">
+						<label for="usr">Comentarios de la mesa</label>
+						<textarea disabled class="form-control" rows="5" id="descripcion" value={{mesaInfo.descripcion}}></textarea>
+					  </div> 
+					
+				  
+					</div>
+			  </div>
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		  </div>
+		</div>
+		
+	  </div>
+  </div>
+
+ <div class="modal" id="modalMesaAnotar" role="dialog">									  	
+	<div class="modal-dialog modal-md">										    
+
+	<!-- Modal content-->
+	<div class="modal-content">
+		
+	<form class="form" id="formMesaAnotar">
+	  <div class="modal-body">
+		  <div class="panel panel-success">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>          
+					<h3>¿Desea Anotarse a la mesa?</h3>
+				</div>					  	
+				<div class="panel-body">
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th class="col-xs-4"></th>
+							<th class="col-xs-8"></th>	                    
+						</tr>
+					  </thead>				
+					  <tbody>
+						<tr>
+							<td><strong><p>Materia</p></strong></td>
+							<td>{{mesaAnotar.nombreMateria}}</td>
+						</tr>		    						      
+						<tr>
+							<td><strong><p>Carrera</p></strong></td>
+							<td>{{mesaAnotar.nombreCarrera}}</td>
+						</tr>
+						<tr>
+							<td><strong><p>Llamado</p></strong></td>
+							<td>{{mesaAnotar.nombreLlamado}}</td>
+						</tr>	 
+						<tr>
+						  <td><strong><p>Numero</p></strong></td>
+						  <td>{{mesaAnotar.numeroLlamado}}</td>
+						</tr>	
+						<tr>
+							<td><strong><p>Docente</p></strong></td>
+							<td>{{mesaAnotar.nombrePresidente}}</td>
+						</tr>     						      					      						      
+					  </tbody>	
+				  	</table>					
+				
+			  
+				</div>
+		  </div>
+	  </div>
+	  <div class="modal-footer">		
+		<button type="submit" id="submit" class="btn btn-success">SI</button>
+		<button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+	  </div>
+	</form>	
+	</div>
+	
+  </div>
+</div>
+
+	<div class="panel panel-success">
+	  	<div class="panel-heading"><strong><h3>Lista de mesas</h3></strong></div>
+	  	<div class="panel-body">		    
+		    <div class="col-lg-12">
+			    					
+		      		{{> EasySearch.Input index=mesas attributes=searchAttributes }}
+		      		<hr />
+	      	</div>			
+			<div class="col-lg-12">
+				<table class="table table-hover">
+					<thead>
+				      <tr>
+			          	<th class="#80cbc4 teal-text">MATERIA</th>
+						  
+			          	<th class="#80cbc4 teal-text">LLAMADO</th>
+			          	<th class="#80cbc4 teal-text">NUMERO</th>			          				          	
+				      </tr>
+				    </thead>
+				    <tbody>
+				    	{{#EasySearch.Each index=mesas}}	
+				      <tr>
+				        <td>{{nombreMateria}}</td>
+				        
+						<td>{{nombreLlamado}}</td>				        
+				        <td>{{numeroLlamado}}</td>				        				        
+				        <td>
+				        	<span class="right">				        	
+							<a href="#"	class="modalMesaInfo btn btn-info btn-xs">Detalle</a>
+							<a href="#" class="modalMesaAnotar btn btn-success btn-xs">Anotarme</a>	
+							<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+							<a href="#" class="modalMesaCancelar btn btn-danger btn-xs">Cancelar</a>	
+							
+					
+							
+							</span>
+						</td>
+				      </tr>
+				      	{{/EasySearch.Each}}
+				    </tbody>	
+				</table>						
+
+				{{#EasySearch.IfNoResults index=mesas}}
+					<p>No hay resultados ...</p>
+				{{/EasySearch.IfNoResults}}
+
+				{{#EasySearch.IfSearching index=mesas}}
+					<p>Buscando ...</p>
+				{{/EasySearch.IfSearching}}
+			
+				{{>EasySearch.Pagination index=mesas}}
+			</div>			
+		</div>		
+	</div>
+
+
+
+</template>

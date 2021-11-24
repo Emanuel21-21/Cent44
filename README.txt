@@ -34,5 +34,8 @@ MESA1 (MATEMATICA-PETROLEO)
 }
 
 //19-11-2021
-
-Hay que controlar que el alumno no se cargue mas de una vez a la materia
+PARA HACER:
+1) Hay que controlar que el alumno no se cargue mas de una vez a la materia
+2) Hay que limitar la nota del (1-10). Tampoco puede aceptar numeros negativos (OK)
+3) Hacer el cancelar nota con una fecha limite
+4) Hacer la inscripcion con una fecha limite
