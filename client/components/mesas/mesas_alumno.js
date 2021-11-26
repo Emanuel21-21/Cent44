@@ -18,6 +18,8 @@ Template.mesasAlumno.onCreated(function(){
   this.selCarrera2 = new ReactiveVar(null);
   this.selDocente2 = new ReactiveVar(null);
   this.selMesaInfo = new ReactiveVar(null);
+  this.selMesaCancelar = new ReactiveVar(null);
+
 });
 
 Template.mesasAlumno.helpers({
@@ -37,6 +39,10 @@ Template.mesasAlumno.helpers({
 
   	materiaEditar: function() {     
     	return Template.instance().selMateriaEditar.get();        
+  	},
+
+    mesaCancelar: function() {     
+    	return Template.instance().selMesaCancelar.get();        
   	},
     
     selecCarrera: function(event, suggestion, datasetName) {
@@ -83,10 +89,10 @@ Template.mesasAlumno.events({
       Template.instance().selMesaInfo.set(mesa);
       $('#modalMesaInfo').modal('show');
       },  
-      'click .modalMesaBorrar': function(event, template){   
+      'click .modalMesaCancelar': function(event, template){   
         var mesa = Mesas.findOne({"_id":this._id});      
-        Template.instance().selMesaBorrar.set(mesa);
-        $('#modalMesaBorrar').modal('show');
+        Template.instance().selMesaCancelar.set(mesa);
+        $('#modalMesaCancelar').modal('show');
       }, 
 
     'submit #formMesaAnotar':function(event,template) {
@@ -115,12 +121,51 @@ Template.mesasAlumno.events({
 
       console.log('EL DOCUMENTO PARA INSERTAR ES: ',alu);
 
+      console.log(mesaRecuperada.fechaHasta);
+      var fechaHoy = new Date();
+      console.log(fechaHoy);
+
       //inserto los datos en la base de datos
       Mesas.update({_id:mesaRecuperada._id},{$push:{alumnosMesa:alu}});	     
       //Profesionales.update({_id:profesional._id},{$push:{mistratamientos:trat}});
 
       $('#modalMesaAnotar').modal('hide'); //CIERRO LA VENTANA MODAL   
       swal("Perfecto! Ya te anotaste al final.", "Te deseamos Exitos! :D", "success");
+
+    },
+
+    'submit #formMesaCancelar':function(event,template) {
+      // Prevent default browser form submit
+      event.preventDefault();
+
+      // Get value from form element
+      const target = event.target; 
+
+      //1) Agregar el alumno a la mesa
+      //recupero los datos a insertar
+      var mesaRecuperada = Template.instance().selMesaCancelar.get();
+      var usuarioLogueado = Meteor.user();
+      console.log('EL USUARIO LOGUEADO ES: ', usuarioLogueado._id);
+      var datosAlumno = Alumnos.findOne({idUser: usuarioLogueado._id});
+      console.log('LOS DATOS DEL ALUMNO SON: ', datosAlumno);
+
+      //Creo mi Array con los datos para insertar   
+      
+		  let alu= {	_id: datosAlumno._id,
+                  nombreApellido:datosAlumno.nombreApellido,
+                  dni:datosAlumno.dni,
+                  email:datosAlumno.email,          
+                  estado: 'Ausente',
+      }; 
+
+      console.log('EL DOCUMENTO PARA INSERTAR ES: ',alu);
+
+    var idAl = datosAlumno._id;
+      //elimino el alumno del array
+		Meteor.call('mesas.removeAlumno',mesaRecuperada._id, idAl);
+
+      $('#modalMesaCancelar').modal('hide'); //CIERRO LA VENTANA MODAL   
+      swal("Perfecto! Ya te eliminaste al final.", "Será la próxima", "error");
 
     },
   

@@ -121,6 +121,65 @@
   </div>
 </div>
 
+<div class="modal" id="modalMesaCancelar" role="dialog">									  	
+	<div class="modal-dialog modal-md">										    
+
+	<!-- Modal content-->
+	<div class="modal-content">
+		
+	<form class="form" id="formMesaCancelar">
+	  <div class="modal-body">
+		  <div class="panel panel-danger">
+				<div class="panel-heading">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>          
+					<h3>¿Desea Cancelar la suscripción?</h3>
+				</div>					  	
+				<div class="panel-body">
+					<table class="table table-hover">
+						<thead>
+						<tr>
+							<th class="col-xs-4"></th>
+							<th class="col-xs-8"></th>	                    
+						</tr>
+					  </thead>				
+					  <tbody>
+						<tr>
+							<td><strong><p>Materia</p></strong></td>
+							<td>{{mesaCancelar.nombreMateria}}</td>
+						</tr>		    						      
+						<tr>
+							<td><strong><p>Carrera</p></strong></td>
+							<td>{{mesaCancelar.nombreCarrera}}</td>
+						</tr>
+						<tr>
+							<td><strong><p>Llamado</p></strong></td>
+							<td>{{mesaCancelar.nombreLlamado}}</td>
+						</tr>	 
+						<tr>
+						  <td><strong><p>Numero</p></strong></td>
+						  <td>{{mesaCancelar.numeroLlamado}}</td>
+						</tr>	
+						<tr>
+							<td><strong><p>Docente</p></strong></td>
+							<td>{{mesaCancelar.nombrePresidente}}</td>
+						</tr>     						      					      						      
+					  </tbody>	
+				  	</table>					
+				
+			  
+				</div>
+		  </div>
+	  </div>
+	  <div class="modal-footer">		
+		<button type="submit" id="submit" class="btn btn-success">SI</button>
+		<button type="button" class="btn btn-danger" data-dismiss="modal">NO</button>
+	  </div>
+	</form>	
+	</div>
+	
+  </div>
+</div>
+
 	<div class="panel panel-success">
 	  	<div class="panel-heading"><strong><h3>Lista de mesas</h3></strong></div>
 	  	<div class="panel-body">		    

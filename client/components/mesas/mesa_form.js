@@ -83,14 +83,19 @@ Template.mesaForm.events({
 		
 		if (target.descripcion.value){ingresoDescripcion = target.descripcion.value};					
 
-		var idLlamado;	
+		var idLlamado;
+		var fechaDesde;
+		var	fechaHasta;
 		var nombreLlamado;
 		var numeroLlamado;
 		var llamadoSeleccionado = Llamados.findOne({"_id":ingresoLlamado});
 		if (llamadoSeleccionado){
 			idLlamado = llamadoSeleccionado._id;
+			fechaDesde = llamadoSeleccionado.fechaDesde;
+			fechaHasta = llamadoSeleccionado.fechaHasta;
 			nombreLlamado = llamadoSeleccionado.nombre;
-			numeroLlamado = llamadoSeleccionado.numero;			
+			numeroLlamado = llamadoSeleccionado.numero;	
+
 		}  
 
 		var idCarrera;	
@@ -146,6 +151,8 @@ Template.mesaForm.events({
 			idLlamado:idLlamado, 
 			nombreLlamado:nombreLlamado,
 			numeroLlamado:numeroLlamado,
+			fechaDesde:fechaDesde,
+			fechaHasta:fechaHasta,
 					
 			idMateria:idMateria,	
 			nombreMateria:nombreMateria,
